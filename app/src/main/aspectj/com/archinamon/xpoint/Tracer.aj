@@ -4,6 +4,9 @@ import android.util.Log;
 import java.util.Arrays;
 import org.aspectj.lang.reflect.SourceLocation;
 
+/*
+ * @author @zmorris
+ */
 privileged aspect Tracer {
 
 	private int indentationLevel = 0;
