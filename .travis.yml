@@ -1,1 +1,31 @@
+language: android
+jdk: oraclejdk8
+sudo: false
+
+env:
+  matrix:
+    - ANDROID_TARGET=android-26 ANDROID_ABI=armeabi-v7a
+  global:
+    - ADB_INSTALL_TIMEOUT=5
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-26.0.0
+    - android-26
+    - extra-android-m2repository
+    - extra-android-support
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+  - $HOME/.gradle
+
+addons:
+  artifacts:
+    paths:
+      - $(git ls-files -o | grep build/outputs/apk | tr "\n" ":")
+
 script: ./gradlew :app:assembleDebug
